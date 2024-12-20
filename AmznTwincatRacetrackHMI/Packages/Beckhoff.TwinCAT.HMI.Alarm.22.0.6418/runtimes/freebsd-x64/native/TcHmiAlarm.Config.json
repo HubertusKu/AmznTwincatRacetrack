@@ -1,0 +1,93 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.2.102.0",
+  "configVersion": "1.0.1.1",
+  "guid": "70b88086-1715-4568-9c52-70cba2acece0",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ClearLoggedEvents": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "database": {
+            "type": "object",
+            "properties": {
+              "databaseSize": {
+                "allOf": [
+                  {
+                    "$ref": "tchmi:general#/definitions/INT64"
+                  },
+                  {
+                    "propertyOrder": 1,
+                    "unit": "byte"
+                  }
+                ]
+              },
+              "numEntries": {
+                "type": "integer",
+                "propertyOrder": 2
+              }
+            },
+            "required": [
+              "databaseSize",
+              "numEntries"
+            ]
+          },
+          "importedEventsCount": {
+            "propertyOrder": 1,
+            "type": "integer"
+          },
+          "importedMessagesCount": {
+            "propertyOrder": 2,
+            "type": "integer"
+          },
+          "importedInvalidAlarmsCount": {
+            "propertyOrder": 3,
+            "type": "integer"
+          },
+          "cachedMessagesCount": {
+            "propertyOrder": 4,
+            "type": "integer"
+          },
+          "cachedAlarmsCount": {
+            "propertyOrder": 5,
+            "type": "integer"
+          },
+          "cachedInvalidAlarmsCount": {
+            "propertyOrder": 6,
+            "type": "integer"
+          },
+          "activeAlarmsCount": {
+            "propertyOrder": 7,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "importedEventsCount",
+          "importedMessagesCount",
+          "importedInvalidAlarmsCount",
+          "cachedMessagesCount",
+          "cachedAlarmsCount",
+          "cachedInvalidAlarmsCount",
+          "activeAlarmsCount",
+          "database"
+        ]
+      }
+    }
+  },
+  "packageVersion": "22.0.6418",
+  "productVersion": "14.2.102.0",
+  "signature": "Yr+skZ8NsoZYP0ncLpKhtjmlImdb90r1/E0Db11mAf0uMtyDWqu/KeIO7E/4a+LWXjTf9W/+P2dACaOVRuG3imYR6dnuuBfqIBhUd2ABdSRqymygC490ZhjC98gWzKTLIq4wt7QeP7MqOm8V6XIbeqMH59dJYNWS58hF5ecKZOll/YUoa6vET8cuqAIplcQyi+0vUASyq87VsfDYqUR20/jIF4N9EX+1OCqcwCV9iSgRidKIqVR8VH8pBljgTDffXA8iCZnlzwdh/jvymS+V8GEY3QwqRDnco5NTNY1VkvpSLsCIMUhvR8Jbgv1uAZW8nK8aqcM0L9B4JnWF128BXQ=="
+}
