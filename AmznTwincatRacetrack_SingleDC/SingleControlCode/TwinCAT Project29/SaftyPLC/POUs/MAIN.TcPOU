@@ -16,7 +16,7 @@ VAR
 	
 	SwitchOn				: BOOL;
 	
-
+	SoftReset 				: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -57,7 +57,7 @@ xError := NOT gvl_safety.SafetyInRun AND NOT gvl_safety.HWSafetyOk AND GVL_Safet
 
 
 
-IF GVL_IO.hwReset OR HwReset THEN
+IF GVL_Safety.hwReset OR SoftReset THEN
 	GVL_Safety.Reset := TRUE;
 ELSE 	
 	GVL_Safety.Reset := FALSE;

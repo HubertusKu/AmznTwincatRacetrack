@@ -74,6 +74,12 @@ END_VAR
         <Declaration><![CDATA[]]></Declaration>
       </Get>
     </Property>
+    <Property Name="P_IsInitialized" Id="{b992277a-38b5-458b-aea4-88c445b8c8ff}">
+      <Declaration><![CDATA[PROPERTY P_IsInitialized : bool]]></Declaration>
+      <Get Name="Get" Id="{b7db8afc-4b26-4e86-9aba-54711672cc60}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Property Name="P_PlanarFeedback" Id="{9e77b007-b995-4d4e-847f-52481bc8b65f}">
       <Declaration><![CDATA[PROPERTY P_PlanarFeedback : REFERENCE TO MC_PlanarFeedback]]></Declaration>
       <Get Name="Get" Id="{e9ed8e49-d6ca-4f9e-8d3e-078d51cca372}">

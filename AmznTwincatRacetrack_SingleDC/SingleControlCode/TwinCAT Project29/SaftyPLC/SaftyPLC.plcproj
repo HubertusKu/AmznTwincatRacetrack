@@ -18,10 +18,6 @@
     <LibraryReferences>{55ccfe8e-c471-45ee-a570-7fae7ea24828}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GVLs\GVL_IO.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
     <Compile Include="GVLs\GVL_Safety.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
