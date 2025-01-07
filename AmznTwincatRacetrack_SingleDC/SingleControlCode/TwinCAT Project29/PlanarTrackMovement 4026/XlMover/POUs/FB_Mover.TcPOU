@@ -46,13 +46,7 @@ END_VAR]]></Declaration>
 	RETURN;
 END_IF
 
-fbPlanarMover.GetTrackTrailInformation(trackTrail);
-_PositionOnTrack := fbPlanarMover.MCTOPLC.SETONTRACK.SetPos;
-IF fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID<>0 THEN 
-	_Track := fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
-	_trackEnum := F_GetTrackEnum(fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID); 
-	_distToEndOfTrack := GVL_Mc.MC_Tracks[_trackEnum].GetLength()-_PositionOnTrack;
-END_IF
+
 
 fbPlanarMover.Update();
 
@@ -63,7 +57,13 @@ SyncMoverFeedback.Update();
 
 UpdateXtsTrack();
 
-
+fbPlanarMover.GetTrackTrailInformation(trackTrail);
+_PositionOnTrack := fbPlanarMover.MCTOPLC.SETONTRACK.SetPos;
+IF fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID<>0 THEN 
+	_Track := fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID;
+	_trackEnum := F_GetTrackEnum(fbPlanarMover.MCTOPLC.SETONTRACK.TrackOID); 
+	_distToEndOfTrack := GVL_Mc.MC_Tracks[_trackEnum].GetLength()-_PositionOnTrack;
+END_IF
 ]]></ST>
       </Implementation>
     </Method>
