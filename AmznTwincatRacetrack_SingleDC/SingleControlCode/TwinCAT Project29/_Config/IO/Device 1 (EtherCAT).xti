@@ -3544,7 +3544,7 @@ Bit 8 - 15 : reserved]]></Comment>
 				<CoeProfile ProfileNo="62919561" DisplayName="AX8000 Power supply"/>
 			</EtherCAT>
 		</Box>
-		<EtherCAT ManualDcSelect="true" MaxCdl="1" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120"/>
+		<EtherCAT ManualDcSelect="true" MaxCdl="1" DcSyncMode="2" EnableVirtualSwitch="true" MaxSwitchPorts="2" MaxSwitchFrames="120" DcSyncTask="2"/>
 	</Device>
 	<Mappings>
 		<OwnerA>
