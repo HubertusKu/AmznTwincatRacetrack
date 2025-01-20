@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.13" ClassName="CMcPrjDef" SubType="70">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.11" ClassName="CMcPrjDef" SubType="70">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{5AC0538E-BDFA-4B58-A6B5-99E997DABADA}" Namespace="MC">MoverVector</Name>
@@ -264,6 +264,193 @@
 					<Name>plcAttribute_strict</Name>
 				</Property>
 			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{3192C90B-2605-4DD5-87BE-005A80B3990B}" Namespace="MC">PlanarTrackOTCID</Name>
+			<BitSize>32</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+			<Properties>
+				<Property>
+					<Name>OTCID</Name>
+				</Property>
+				<Property>
+					<Name>TcCategoryOID</Name>
+					<Value>McPlanarTrack</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{29613389-89D4-4541-B76E-D16742890DEF}" Namespace="MC">MC_TRACK_POSITION</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>Position</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TrackOid</Name>
+				<Type GUID="{3192C90B-2605-4DD5-87BE-005A80B3990B}" Namespace="MC">PlanarTrackOTCID</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{50FEC5F2-C9A2-49A2-AB32-4764BBA0A649}" Namespace="MC" TcBaseType="true">MC_GAP_MODE_ON_TRACK</Name>
+			<Comment><![CDATA[Indicates the way in which gap control is done on track.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_hide</Name>
+					</Property>
+				</Properties>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Standard1D]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[The Planar Mover keeps a distance to its neighbours on track that is at least the sum of gap and stop distance.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Fast1D]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[The Planar Mover keeps a distance to its neighbours on track that is at least the gap.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{51EC8EBA-E260-4EDC-94C0-5ED02ABD2F9A}" Namespace="MC" TcBaseType="true">MC_DYNAMIC_MODE_ON_TRACK</Name>
+			<Comment><![CDATA[Indicates the way in which dynamics are planned when moving on track.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. no connection or component not yet ready.]]></Comment>
+				<Properties>
+					<Property>
+						<Name>plcAttribute_hide</Name>
+					</Property>
+				</Properties>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[None]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[The Planar Mover interprets the given dynamic limits in a one-dimensional fashion, with respect to the track's arclength. This way, the maximum velocity is aimed at even in curves.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[AccelerationLimitedVelocity]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[The maximal velocity in curves is reduced to not exceed the maximum x,y radial acceleration there. Produces the same behavior as the None mode when on a straight track.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{814ADC69-F405-4E98-AE53-901793DD7E72}" Namespace="MC">MC_MOVEMENT_TYPE_ON_TRACK</Name>
+			<Comment><![CDATA[Type of a movement on track, e.g. Standstill.]]></Comment>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[Invalid]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[Indicates no or invalid information, e.g. mover is not on track.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Standstill]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[Mover does not move.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[MoveOnTrack]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[Mover moves to a specific target position.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[MoveOnTrackVelocity]]></Text>
+				<Enum>3</Enum>
+				<Comment><![CDATA[Mover moves with a specific target velocity.]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[GearInPosOnTrack]]></Text>
+				<Enum>4</Enum>
+				<Comment><![CDATA[Mover tries to follow a master reference (e.g. another Mover).]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[Halt]]></Text>
+				<Enum>5</Enum>
+				<Comment><![CDATA[Mover tries to end the current movement as fast as possible.]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>plcAttribute_qualified_only</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</Name>
+			<Comment><![CDATA[Information about a mover on track (target position, gap, etc.).]]></Comment>
+			<BitSize>576</BitSize>
+			<SubItem>
+				<Name>TargetPosition</Name>
+				<Type GUID="{29613389-89D4-4541-B76E-D16742890DEF}" Namespace="MC">MC_TRACK_POSITION</Type>
+				<Comment><![CDATA[Target position of the mover, zero if not busy with move on track.]]></Comment>
+				<BitSize>128</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RemainingDistance</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Distance the mover will travel to its target position.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Gap</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<Comment><![CDATA[Gap that the mover keeps to its neighbours.]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Limits</Name>
+				<Type GUID="{38ED262D-F8F3-4BB3-9E0F-BFC46C6E916B}" Namespace="MC">DynamicLimits1D</Type>
+				<Comment><![CDATA[Dynamic limits the mover does not violate.]]></Comment>
+				<BitSize>256</BitSize>
+				<BitOffs>256</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GapMode</Name>
+				<Type GUID="{50FEC5F2-C9A2-49A2-AB32-4764BBA0A649}" Namespace="MC">MC_GAP_MODE_ON_TRACK</Type>
+				<Comment><![CDATA[Indicates the way in which gap control is done on track.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>512</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DynamicMode</Name>
+				<Type GUID="{51EC8EBA-E260-4EDC-94C0-5ED02ABD2F9A}" Namespace="MC">MC_DYNAMIC_MODE_ON_TRACK</Type>
+				<Comment><![CDATA[Indicates the way in which dynamic limits are interpreted.]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>528</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MovementType</Name>
+				<Type GUID="{814ADC69-F405-4E98-AE53-901793DD7E72}" Namespace="MC">MC_MOVEMENT_TYPE_ON_TRACK</Type>
+				<Comment><![CDATA[Indicates which type of movement is executed (MoveOnTrack, Halt, etc.).]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>544</BitOffs>
+			</SubItem>
 		</DataType>
 		<DataType>
 			<Name GUID="{DCBC2796-F4A6-49ED-AD13-8E71F04F5FD7}" Namespace="MC">CDT_HWTOMC_MOVER</Name>
@@ -1982,6 +2169,13 @@
 					<PTCID>#x050300db</PTCID>
 				</Parameter>
 				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+					<Name>On track information</Name>
+					<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+					<BitSize>576</BitSize>
+					<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+					<PTCID>#x05030180</PTCID>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 					<Name>Forward blocking neighbours</Name>
 					<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 					<BitSize>0</BitSize>
@@ -2013,6 +2207,20 @@
 						<Elements Min="0" MaxUnbounded="true">0</Elements>
 					</ArrayInfo>
 					<PTCID>#x0503013e</PTCID>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+					<Name>Entering system</Name>
+					<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x05030175</PTCID>
+				</Parameter>
+				<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+					<Name>Leaving system</Name>
+					<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+					<BitSize>8</BitSize>
+					<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+					<PTCID>#x05030178</PTCID>
 				</Parameter>
 				<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 					<Name>ChildAreaLocation</Name>
@@ -2657,10 +2865,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010450" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010450" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 1</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -2691,6 +2899,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -2782,6 +3000,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110010</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -2789,10 +3013,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010460" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010460" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 1</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -3567,6 +3791,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -4005,6 +4233,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -4708,6 +4952,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -4739,6 +4990,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -5257,10 +5522,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010540" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010540" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 2</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -5291,6 +5556,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -5382,6 +5657,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110020</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -5389,10 +5670,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010550" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010550" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 2</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -6167,6 +6448,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -6605,6 +6890,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -7308,6 +7609,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -7339,6 +7647,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -7857,10 +8179,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010560" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010560" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 3</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -7891,6 +8213,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -7982,6 +8314,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110030</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -7989,10 +8327,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010570" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010570" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 3</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -8767,6 +9105,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -9205,6 +9547,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -9908,6 +10266,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -9939,6 +10304,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -10457,10 +10836,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010580" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010580" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 4</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -10491,6 +10870,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -10582,6 +10971,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110040</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -10589,10 +10984,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010590" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010590" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 4</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -11367,6 +11762,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -11805,6 +12204,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -12508,6 +12923,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -12539,6 +12961,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -13057,10 +13493,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010105f0" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x010105f0" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 5</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -13091,6 +13527,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -13182,6 +13628,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110050</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -13189,10 +13641,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010600" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010600" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 5</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -13967,6 +14419,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -14405,6 +14861,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -15108,6 +15580,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -15139,6 +15618,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -15657,10 +16150,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010610" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010610" KeepUnrestoredLinks="1" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 6</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -15691,6 +16184,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -15782,6 +16285,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110060</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -15789,10 +16298,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010620" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010620" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 6</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -16567,6 +17076,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -17005,6 +17518,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -17708,6 +18237,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -17739,6 +18275,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -18257,10 +18807,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010630" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010630" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 7</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -18291,6 +18841,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -18382,6 +18942,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110070</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -18389,10 +18955,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010640" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010640" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 7</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -19167,6 +19733,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -19605,6 +20175,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -20308,6 +20894,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -20339,6 +20932,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -20857,10 +21464,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010650" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010650" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 8</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -20891,6 +21498,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -20982,6 +21599,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110080</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -20989,10 +21612,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010660" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010660" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 8</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -21767,6 +22390,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -22207,6 +22834,22 @@
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>15000</Id>
 								<Message><![CDATA[DEBUG-MSG: '{0}', '{1}', '{2}', '{3}']]></Message>
 							</EventMessage>
@@ -22585,10 +23228,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010107a0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x010107a0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 9</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -22619,6 +23262,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -22710,6 +23363,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110090</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -22717,10 +23376,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x010107b0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x010107b0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 9</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -23495,6 +24154,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -23933,6 +24596,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -24636,6 +25315,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -24667,6 +25353,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -25185,10 +25885,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010107c0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x010107c0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 10</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -25219,6 +25919,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -25310,6 +26020,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x051100a0</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -25317,10 +26033,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x010107d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x010107d0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 10</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -26095,6 +26811,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -26533,6 +27253,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -27236,6 +27972,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -27267,6 +28010,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -27785,10 +28542,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x010107e0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x010107e0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 11</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -27819,6 +28576,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -27910,6 +28677,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x051100b0</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -27917,10 +28690,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x010107f0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x010107f0" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 11</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -28695,6 +29468,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -29133,6 +29910,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -29836,6 +30629,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -29867,6 +30667,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -30385,10 +31199,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010800" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010800" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 12</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -30419,6 +31233,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -30510,6 +31334,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x051100c0</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -30517,10 +31347,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010810" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010810" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 12</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -31295,6 +32125,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -31733,6 +32567,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -32436,6 +33286,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -32467,6 +33324,20 @@
 							<Elements Min="0" MaxUnbounded="true">1</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -32985,10 +33856,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010820" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010820" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 13</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -33019,6 +33890,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -33110,6 +33991,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x051100d0</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -33117,10 +34004,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010830" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010830" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 13</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -33895,6 +34782,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -34333,6 +35224,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -35036,6 +35943,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -35067,6 +35981,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -35585,10 +36513,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010840" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010840" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 14</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -35619,6 +36547,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -35710,6 +36648,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x051100e0</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -35717,10 +36661,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010850" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010850" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 14</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -36495,6 +37439,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -36933,6 +37881,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -37636,6 +38600,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -37667,6 +38638,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -38185,10 +39170,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010860" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010860" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 15</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -38219,6 +39204,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -38310,6 +39305,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x051100f0</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -38317,10 +39318,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010870" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010870" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 15</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -39095,6 +40096,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -39533,6 +40538,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>
@@ -40236,6 +41257,13 @@
 						<PTCID>#x050300db</PTCID>
 					</Parameter>
 					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>On track information</Name>
+						<Comment><![CDATA[General information about the move on the track (target position, gap, etc.).]]></Comment>
+						<BitSize>576</BitSize>
+						<BaseType GUID="{245D0CA9-641C-4E63-AAB6-519FF2022292}" Namespace="MC">MC_MOVER_ON_TRACK_INFORMATION</BaseType>
+						<PTCID>#x05030180</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
 						<Name>Forward blocking neighbours</Name>
 						<Comment><![CDATA[OIDs of neighbours in front of this mover blocking it in standstill on the track.]]></Comment>
 						<BitSize>0</BitSize>
@@ -40267,6 +41295,20 @@
 							<Elements Min="0" MaxUnbounded="true">0</Elements>
 						</ArrayInfo>
 						<PTCID>#x0503013e</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Entering system</Name>
+						<Comment><![CDATA[True if not (yet) on system but already approaching on other system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030175</PTCID>
+					</Parameter>
+					<Parameter OnlineParameter="true" HideParameter="true" ReadOnly="true">
+						<Name>Leaving system</Name>
+						<Comment><![CDATA[True if (still) on system but already approaching the other system to leave this system.]]></Comment>
+						<BitSize>8</BitSize>
+						<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+						<PTCID>#x05030178</PTCID>
 					</Parameter>
 					<Parameter HideParameter="true" ReadOnly="true" Group="Internal" RefreshableValue="true">
 						<Name>ChildAreaLocation</Name>
@@ -40785,10 +41827,10 @@
 					</Value>
 				</ParameterValues>
 			</TmcDesc>
-			<Module Id="#x01010880" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+			<Module Id="#x01010880" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 				<Name>XConverter 16</Name>
 				<ImageId>1001</ImageId>
-				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<TmcDesc GUID="{F00CA22C-7740-421E-AF7E-69B044CC7AAF}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>XConverter</Name>
 					<CLSID ClassFactory="TcIoXts">{6062013C-3891-4684-B42A-D35750682B9C}</CLSID>
 					<Info>
@@ -40819,6 +41861,16 @@
 					<Parameters>
 						<Group><![CDATA[General]]></Group>
 						<Group><![CDATA[Info]]></Group>
+						<Parameter Group="General">
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<BitSize>8</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+							<Default>
+								<EnumText>FALSE</EnumText>
+							</Default>
+							<PTCID>#x04000001</PTCID>
+							<ContextId>1</ContextId>
+						</Parameter>
 						<Parameter OnlineParameter="true" ReadOnly="true" Group="Info">
 							<Name>VersionString</Name>
 							<Comment><![CDATA[Returns the version string of the driver.]]></Comment>
@@ -40910,6 +41962,12 @@
 						</Property>
 					</Properties>
 					<ParentOTCID>#x05110100</ParentOTCID>
+					<ParameterValues>
+						<Value>
+							<Name>IsMultiPcHandlingEnabled</Name>
+							<EnumText>FALSE</EnumText>
+						</Value>
+					</ParameterValues>
 					<InterfacePointerValues>
 						<Value>
 							<Name>CyclicCaller</Name>
@@ -40917,10 +41975,10 @@
 						</Value>
 					</InterfacePointerValues>
 				</TmcDesc>
-				<Module Id="#x01010890" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+				<Module Id="#x01010890" KeepUnrestoredLinks="2" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 					<Name>MoverController 16</Name>
 					<ImageId>1002</ImageId>
-					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.22.0">
+					<TmcDesc GUID="{168BD96C-155E-4474-9DAD-83ECB801D40D}" ClassFactoryId="Beckhoff Automation GmbH|TcIoXts|0.2.27.0">
 						<Name>XtsMoverController</Name>
 						<CLSID ClassFactory="TcIoXts">{168BD96C-155E-4474-9DAD-83ECB801D40D}</CLSID>
 						<Info>
@@ -41695,6 +42753,10 @@
 								<Message><![CDATA[Please be advised that the parameters 'Offset', 'Scaling' and 'Gap' are currently not fully supported for AT22xx modules. Ensure that your application does not rely on these parameters to avoid any potential issues.]]></Message>
 							</EventMessage>
 							<EventMessage>
+								<Id>5058</Id>
+								<Message><![CDATA[All parts are excluded from detection. Include part to be able to start detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
 								<Id>9000</Id>
 								<Message><![CDATA[XTS task cannot be accessed. Is the context of the TcIoXts driver set correctly?]]></Message>
 							</EventMessage>
@@ -42133,6 +43195,22 @@
 							<EventMessage>
 								<Id>9109</Id>
 								<Message><![CDATA[Task of {0} ({1}) is missing!]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9110</Id>
+								<Message><![CDATA[Detection is aborted because there are not enough movers available. Total available are {0} where {1} are already on included parts but {2} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9111</Id>
+								<Message><![CDATA[Detection is aborted because there are already too many included movers ({0}) but only {1} are configured to be detected.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9112</Id>
+								<Message><![CDATA[Mover detection is aborted. All parts are excluded from detection.]]></Message>
+							</EventMessage>
+							<EventMessage>
+								<Id>9113</Id>
+								<Message><![CDATA[Arrive of {0} ({1}) is aborted because it is enabled.]]></Message>
 							</EventMessage>
 							<EventMessage>
 								<Id>15000</Id>

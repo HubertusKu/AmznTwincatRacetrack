@@ -29,7 +29,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
 			<BitSize>4</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -38,7 +38,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
 			<BitSize>2</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -47,7 +47,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000009}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..8] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000009}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..8] OF BIT</Name>
 			<BitSize>9</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -56,7 +56,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000003}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..2] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000003}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..2] OF BIT</Name>
 			<BitSize>3</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -65,7 +65,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -101,7 +101,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
 			<BitSize>12</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -110,7 +110,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-00200000000E}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..13] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-00200000000E}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..13] OF BIT</Name>
 			<BitSize>14</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -215,7 +215,7 @@
 		<ImageData Id="1009">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ff00bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ff00bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1010">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000074120000741200000000000000000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3000000c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3241cedc3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000000000000000000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="11.200.1.30.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="4">
+	<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="11.200.1.30.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="4">
 		<Name>__FILENAME__</Name>
 		<AddressInfo>
 			<Ccat>

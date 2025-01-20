@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.8">
+  <DUT Name="ST_MoverOnTrackInfo" Id="{0e1293e3-4563-4c2c-947a-9b87389363ac}">
+    <Declaration><![CDATA[TYPE ST_MoverOnTrackInfo :
+STRUCT
+	TargetPosition 		: LREAL;
+	TargetTrack 		: Otcid;
+	Remainingdistance 	: LREAL;
+	Gap 				: LREAL;
+	LimitV 				: LREAL;
+	LimitA 				: LREAL;
+	LimitD 				: LREAL;
+	LimitJ 				: LREAL;
+	GapMode				: MC.MC_GAP_MODE_ON_TRACK;
+	DynamicMode			: MC.MC_DYNAMIC_MODE_ON_TRACK;
+	Movementtype		: MC.MC_MOVEMENT_TYPE_ON_TRACK;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

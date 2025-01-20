@@ -46,7 +46,7 @@ VAR_INPUT
 	track: REFERENCE TO MC_PlanarTrack;	
 	targetPos: LREAL;
 	gap : LREAL; 
-	velo : LREAL; 
+
 END_VAR
 ]]></Declaration>
     </Method>

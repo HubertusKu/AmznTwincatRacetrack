@@ -51,6 +51,12 @@
     <Compile Include="DUTs\ST_MoverConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_MoverInfo.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\ST_MoverOnTrackInfo.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_PlanarTrackConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -163,16 +169,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="Tc3_XtsInterface,0.2.22.0,Beckhoff Automation GmbH">
+    <LibraryReference Include="Tc3_XtsInterface,0.2.27.0,Beckhoff Automation GmbH">
       <Namespace>Tc3_XtsInterface</Namespace>
     </LibraryReference>
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderResolution Include="HelperFunctions">
-      <Resolution>HelperFunctions, 1.0.3.0 (Amazon)</Resolution>
+    <PlaceholderResolution Include="Tc3_Mc3PlanarMotion">
+      <Resolution>Tc3_Mc3PlanarMotion, 0.3.94.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc3_Physics">
-      <Resolution>Tc3_Physics, 0.3.79.0 (Beckhoff Automation GmbH)</Resolution>
+      <Resolution>Tc3_Physics, 0.3.94.0 (Beckhoff Automation GmbH)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
