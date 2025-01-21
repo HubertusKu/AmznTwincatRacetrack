@@ -2572,7 +2572,7 @@ External Setpoint Generation:
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [0..2] OF E_EcState</Name>
+			<Name GUID="{692E9D51-AA09-CB92-CC49-20D6C0B6E99E}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..2] OF E_EcState</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{DA85B3A0-6524-4524-A3F1-0BA72A658222}">E_EcState</BaseType>
 			<ArrayInfo>
@@ -8159,7 +8159,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{25828569-E288-4DD1-AACF-E36D960D51A6}" Name="PlanarTrackMovement" PrjFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.plcproj" TmcFilePath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{1ABDA10C-D760-D469-52EA-D4BE9E20B6AC}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{FAB09400-C509-CE18-72D9-0B648F5489A0}" TmcPath="PlanarTrackMovement 4026\PlanarTrackMovement.tmc">
 					<Name>PlanarTrackMovement Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">

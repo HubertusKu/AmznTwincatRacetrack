@@ -1,4 +1,4 @@
-<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%">
+<div id="Desktop" data-tchmi-type="TcHmi.Controls.System.TcHmiView" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width-mode="Content" data-tchmi-min-width="100" data-tchmi-min-width-unit="%" data-tchmi-height-mode="Content" data-tchmi-min-height="100" data-tchmi-min-height-unit="%" data-tchmi-creator-viewport-height="1200">
   <div id="ViewDesktopBeckhoffLogo" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-src="Images/Beckhoff_Logo.svg" data-tchmi-left="46" data-tchmi-top="9" data-tchmi-width="194" data-tchmi-height="57">
 
   </div>
@@ -322,7 +322,7 @@
 
 
 </div>
-<div id="TcHmiIFrame" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiIFrame" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="793" data-tchmi-left-unit="px" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-width="465" data-tchmi-width-unit="px" data-tchmi-src="%s%ADS.PLC1.GVL_Mc.sGraphCalciFrame%/s%">
+<div id="TcHmiIFrame" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiIFrame" data-tchmi-height="520" data-tchmi-height-unit="px" data-tchmi-left="901" data-tchmi-left-unit="px" data-tchmi-top="32" data-tchmi-top-unit="px" data-tchmi-width="345" data-tchmi-width-unit="px" data-tchmi-src="%s%ADS.PLC1.GVL_Mc.sGraphCalciFrame%/s%">
 </div>
 <div id="TcHmiSpinboxInput_20" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiSpinboxInput" data-tchmi-auto-focus-out="true" data-tchmi-decimal-digits="2" data-tchmi-height="24" data-tchmi-height-unit="px" data-tchmi-left="470" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="false" data-tchmi-top="102" data-tchmi-top-unit="px" data-tchmi-value-horizontal-alignment="Center" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-auto-step="false" data-tchmi-max-value="2.00" data-tchmi-min-value="0.00" data-tchmi-step="0.01" data-tchmi-unit="%f%%/f%" data-tchmi-value="%s%ADS.PLC1.MAIN.SwitchConfig::DivertConfig::CurrentFunctionCoeffA|BindingMode=TwoWay|BindingEvent=onValueChanged|SubscriptionMode=Change%/s%">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
@@ -339,10 +339,92 @@
 
 
 </div>
-<div id="TcHmiTextblock_24" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="593" data-tchmi-left-unit="px" data-tchmi-text="%s%ADS.PLC1.MAIN.RuntimeDuration%/s%" data-tchmi-top="551" data-tchmi-top-unit="px" data-tchmi-width="361" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18">
+<div id="TcHmiTextblock_24" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="49" data-tchmi-height-unit="px" data-tchmi-left="603" data-tchmi-left-unit="px" data-tchmi-text="%s%ADS.PLC1.MAIN.RuntimeDuration%/s%" data-tchmi-top="551" data-tchmi-top-unit="px" data-tchmi-width="361" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="18">
 </div>
 <div id="TcHmiTextblock_25" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="446" data-tchmi-left-unit="px" data-tchmi-text="Current Run Duration" data-tchmi-top="551" data-tchmi-top-unit="px" data-tchmi-width="123" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="13">
 </div>
 <div id="TcHmiToggleSwitch_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiToggleSwitch" data-tchmi-height="38" data-tchmi-height-unit="px" data-tchmi-left="603" data-tchmi-left-unit="px" data-tchmi-text="Coil Magnet Manual Control" data-tchmi-top="202" data-tchmi-top-unit="px" data-tchmi-width="177" data-tchmi-width-unit="px" data-tchmi-toggle-state="Normal" data-tchmi-tooltip="No Function in Auto Mode!" data-tchmi-state-symbol="%s%ADS.PLC1.MAIN.MagnetOnManHMICmd|SubscriptionMode=Poll%/s%">
+</div>
+<div id="TcHmiDatagrid_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="200" data-tchmi-height-unit="px" data-tchmi-left="141" data-tchmi-left-unit="px" data-tchmi-top="634" data-tchmi-top-unit="px" data-tchmi-width="445" data-tchmi-width-unit="px" data-tchmi-src-data="%s%ADS.PLC1.GVL_Mc.fbMover%/s%" data-tchmi-show-row-numbers="true">
+
+
+<script data-tchmi-target-attribute="data-tchmi-cell-content-padding" type="application/json">
+{
+  "left": 3,
+  "leftUnit": "px",
+  "right": 3,
+  "rightUnit": "px",
+  "top": 0,
+  "topUnit": "px",
+  "bottom": 0,
+  "bottomUnit": "px"
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-src-column" type="application/json">
+[
+  {
+    "name": "%s%[1]::_stMoverInfos::MoverOtcid%/s%",
+    "label": "Mover OID",
+    "control": "TextBox",
+    "width": 100,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Left",
+    "verticalAlignment": "Center",
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": true
+  },
+  {
+    "name": "%ctrl%TcHmiDatagrid_1::SelectedRowIndex%/ctrl%",
+    "label": "test",
+    "control": "TextBlock",
+    "width": 100,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Left",
+    "verticalAlignment": "Center",
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": true
+  }
+]
+</script>
+</div>
+<div id="TcHmiTextbox_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="195" data-tchmi-height-unit="px" data-tchmi-horizontal-scroll="Auto" data-tchmi-left="172" data-tchmi-left-unit="px" data-tchmi-text="%f%%s%ADS.PLC1.GVL_Mc.fbMover.1._stMoverInfos%/s%%/f%" data-tchmi-top="875" data-tchmi-top-unit="px" data-tchmi-vertical-scroll="Auto" data-tchmi-width="1120" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+</div>
+<div id="TcHmiTextbox_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-horizontal-scroll="Auto" data-tchmi-left="113" data-tchmi-left-unit="px" data-tchmi-text="%f%%s%ADS.PLC1.GVL_Mc.fbMover[1]::_stMoverInfos::MoverOtcid%/s%%/f%" data-tchmi-top="1105" data-tchmi-top-unit="px" data-tchmi-vertical-scroll="Auto" data-tchmi-width="150" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
 </div>
 </div>

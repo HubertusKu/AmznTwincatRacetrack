@@ -29,6 +29,31 @@
     "DEFAULTTIMEZONE": "client",
     "DEFINITIONS": {
         "ADS": {
+            "ADS-PLC1.ARRAY_0..2_OF-TcSerializedSourceInfoType": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.TcSerializedSourceInfoType"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_0..7_OF-BYTE": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/BYTE"
+                },
+                "maxItems": 8,
+                "minItems": 8,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_1..16_OF-FB_Mover": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.FB_Mover"
+                },
+                "maxItems": 16,
+                "minItems": 16,
+                "startOffset": 1,
+                "type": "array"
+            },
             "ADS-PLC1.E_SwitchOpMode": {
                 "attributes": {
                     "generate_implicit_init_function": "",
@@ -50,8 +75,1186 @@
                 ],
                 "type": "integer"
             },
+            "ADS-PLC1.FB_Mover": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcImplements": "I_Mover",
+                    "no_assign": ""
+                },
+                "properties": {
+                    "CmdFeedback": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_XtsInterface.XtsCommandFeedback"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__GetOnTrackInfos_857__bError": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "attributes": {
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 28
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__GetOnTrackInfos_857__hResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/HRESULT"
+                            },
+                            {
+                                "attributes": {
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 27
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__JoinNearestTrack_859__cmdFeedback": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_XtsInterface.XtsCommandFeedback"
+                            },
+                            {
+                                "attributes": {
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 32
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__JoinNearestTrack_859__mcTrackOid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": "",
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 30
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__JoinNearestTrack_859__nForCounter": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "attributes": {
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 29
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__JoinNearestTrack_859__objectInfo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.PlanarObjectInfo"
+                            },
+                            {
+                                "attributes": {
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 33
+                            }
+                        ]
+                    },
+                    "FB_Mover_824__JoinNearestTrack_859__partOid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": "",
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 31
+                            }
+                        ]
+                    },
+                    "PID_OnTrackInfos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PTCID"
+                            },
+                            {
+                                "propertyOrder": 25
+                            }
+                        ]
+                    },
+                    "SyncMoverFeedback": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "_GearInOptions": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.ST_GearInPosOnTrackWithMasterMoverOptions"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "_InSync": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "_PositionOnTrack": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 20
+                            }
+                        ]
+                    },
+                    "_ReWork": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "_TargetTrack": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "_Track": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 21
+                            }
+                        ]
+                    },
+                    "_bIsInitialized": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "_distToEndOfTrack": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 22
+                            }
+                        ]
+                    },
+                    "_ipComObject": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ITComObject"
+                            },
+                            {
+                                "propertyOrder": 24
+                            }
+                        ]
+                    },
+                    "_nextMcTrackOid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "_partConfig": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "_stDynamics": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Physics.DynamicConstraint_PathXY"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "_stMoveOnTrackOptions": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "_stMoverInfos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_MoverInfo"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "_stMoverOnTrackInfos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_MoverOnTrackInfo"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "_syncTrail": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "bInit": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 26
+                            }
+                        ]
+                    },
+                    "fbPlanarFeedback": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarFeedback"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "fbPlanarMover": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarMover"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "fbResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.FB_TcMessage"
+                            },
+                            {
+                                "propertyOrder": 23
+                            }
+                        ]
+                    },
+                    "ipXtsMover": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_XtsInterface.I_XtsXlMover1"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "ipXtsProcessingUnit": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_XtsInterface.I_XtsProcessingUnit1"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "trackTrail": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.GUID": {
+                "additionalProperties": false,
+                "properties": {
+                    "Data1": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "Data2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/WORD"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "Data3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/WORD"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "Data4": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..7_OF-BYTE"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.ITComObject": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcExtends": "ITcPersist"
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_ACT": {
+                "additionalProperties": false,
+                "properties": {
+                    "ActPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MoverVector"
+                            },
+                            {
+                                "comment": "Current position.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "ActVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MoverVector"
+                            },
+                            {
+                                "comment": "Current velocity.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "DcTimeStamp": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/ULINT"
+                            },
+                            {
+                                "comment": "Current time stamp.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "PhysicalAreaID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Current physical area id.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_COORDMODE": {
+                "additionalProperties": false,
+                "properties": {
+                    "ACoordinateMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_COORDINATE_MODE"
+                            },
+                            {
+                                "comment": "A coordinate.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "BCoordinateMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_COORDINATE_MODE"
+                            },
+                            {
+                                "comment": "B coordinate.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "CCoordinateMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_COORDINATE_MODE"
+                            },
+                            {
+                                "comment": "C coordinate.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "XYCoordinateMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_COORDINATE_MODE"
+                            },
+                            {
+                                "comment": "X and Y coordinate.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "ZCoordinateMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_COORDINATE_MODE"
+                            },
+                            {
+                                "comment": "Z coordinate.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_SET": {
+                "additionalProperties": false,
+                "properties": {
+                    "DcTimeStamp": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/ULINT"
+                            },
+                            {
+                                "comment": "Current time stamp.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "PhysicalAreaID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Current physical area id.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "SetAcc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MoverVector"
+                            },
+                            {
+                                "comment": "Current acceleration.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "SetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MoverVector"
+                            },
+                            {
+                                "comment": "Current position.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "SetVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MoverVector"
+                            },
+                            {
+                                "comment": "Current velocity.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_STD": {
+                "additionalProperties": false,
+                "properties": {
+                    "Busy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MoverBusy"
+                            },
+                            {
+                                "comment": "Busy state of the planar mover.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "CommandMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_MOVER_COMMAND_MODE"
+                            },
+                            {
+                                "comment": "Command mode of the planar mover, e.g. onTrack.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "ErrorCode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/HRESULT"
+                            },
+                            {
+                                "comment": "Error code of the planar mover.",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "GroupOID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "comment": "Object id of the planar group the mover is in.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "MoverOID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "comment": "Object id of the planar mover.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "State": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_STATE"
+                            },
+                            {
+                                "comment": "State of the planar mover, e.g. enabled.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_TRACK": {
+                "additionalProperties": false,
+                "properties": {
+                    "SetAcc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Current acceleration.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "SetJerk": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Current jerk.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "SetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Current position.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "SetVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Current velocity.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "TrackOID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "comment": "Current track object id.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.CDT_PLCTOMC_PLANAR_MOVER_STD": {
+                "additionalProperties": false,
+                "properties": {
+                    "Enable": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Unused as of now.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.MC_DYNAMIC_MODE_ON_TRACK": {
+                "attributes": {
+                    "plcAttribute_qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "None",
+                        "value": 1
+                    },
+                    {
+                        "label": "AccelerationLimitedVelocity",
+                        "value": 2
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.MC.MC_GAP_MODE_ON_TRACK": {
+                "attributes": {
+                    "plcAttribute_qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "Standard1D",
+                        "value": 1
+                    },
+                    {
+                        "label": "Fast1D",
+                        "value": 2
+                    }
+                ],
+                "type": "integer"
+            },
             "ADS-PLC1.MC.MC_LREAL": {
                 "$ref": "tchmi:general#/definitions/LREAL"
+            },
+            "ADS-PLC1.MC.MC_MOVEMENT_TYPE_ON_TRACK": {
+                "attributes": {
+                    "plcAttribute_qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "Standstill",
+                        "value": 1
+                    },
+                    {
+                        "label": "MoveOnTrack",
+                        "value": 2
+                    },
+                    {
+                        "label": "MoveOnTrackVelocity",
+                        "value": 3
+                    },
+                    {
+                        "label": "GearInPosOnTrack",
+                        "value": 4
+                    },
+                    {
+                        "label": "Halt",
+                        "value": 5
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.MC.MC_PLANAR_COORDINATE_MODE": {
+                "attributes": {
+                    "plcAttribute_qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "Independent",
+                        "value": 1
+                    },
+                    {
+                        "label": "Dependent",
+                        "value": 2
+                    },
+                    {
+                        "label": "External",
+                        "value": 3
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.MC.MC_PLANAR_MOVER_COMMAND_MODE": {
+                "attributes": {
+                    "plcAttribute_qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    101,
+                    102,
+                    103,
+                    104,
+                    105,
+                    106,
+                    107
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "FreeMovement",
+                        "value": 101
+                    },
+                    {
+                        "label": "OnTrack",
+                        "value": 102
+                    },
+                    {
+                        "label": "JoiningTrack",
+                        "value": 103
+                    },
+                    {
+                        "label": "LeavingTrack",
+                        "value": 104
+                    },
+                    {
+                        "label": "ExternalSetpointGeneration",
+                        "value": 105
+                    },
+                    {
+                        "label": "CRotationFreeMovement",
+                        "value": 106
+                    },
+                    {
+                        "label": "CRotationOnTrack",
+                        "value": 107
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.MC.MC_PLANAR_STATE": {
+                "attributes": {
+                    "plcAttribute_qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "Disabled",
+                        "value": 1
+                    },
+                    {
+                        "label": "Enabling",
+                        "value": 2
+                    },
+                    {
+                        "label": "Enabled",
+                        "value": 3
+                    },
+                    {
+                        "label": "Disabling",
+                        "value": 4
+                    },
+                    {
+                        "label": "Error",
+                        "value": 5
+                    },
+                    {
+                        "label": "ErrorPending",
+                        "value": 6
+                    },
+                    {
+                        "label": "Resetting",
+                        "value": 7
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.MC.MoverBusy": {
+                "additionalProperties": false,
+                "properties": {
+                    "busyA": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the a coordinate.",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "busyB": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the b coordinate.",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "busyC": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the c coordinate.",
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "busyMover": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the whole PlanarMover.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "busyX": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the x coordinate.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "busyXYC": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the main coordinates (includes only x and y if c is independent).",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "busyY": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the y coordinate.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "busyZ": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "comment": "Indicates the busy state of the z coordinate.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.MC.MoverVector": {
+                "additionalProperties": false,
+                "properties": {
+                    "a": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "A coordinate.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "b": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "B coordinate.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "c": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "C coordinate.",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "x": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "X coordinate.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "y": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Y coordinate.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "z": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Z coordinate.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.PROPERTY-GET-BOOL": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-HRESULT": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/HRESULT"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-OTCID": {
+                "allOf": [
+                    {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "function": true
+                    }
+                ]
             },
             "ADS-PLC1.PROPERTY-GET-SET-MC.MC_LREAL": {
                 "allOf": [
@@ -66,10 +1269,159 @@
                     }
                 ]
             },
+            "ADS-PLC1.PROPERTY-GET-SET-STRING-255": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-255"
+                    },
+                    {
+                        "function": true,
+                        "writeValue": {
+                            "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-255"
+                        }
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-SET-UDINT": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UDINT"
+                    },
+                    {
+                        "function": true,
+                        "writeValue": {
+                            "$ref": "tchmi:general#/definitions/UDINT"
+                        }
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-STRING-255": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-255"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-Tc3_EventLogger.I_TcSourceInfo": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.I_TcSourceInfo"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-TcEventSeverity": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.TcEventSeverity"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-UDINT": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UDINT"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PROPERTY-GET-ULINT": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/ULINT"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "ADS-PLC1.PTCID": {
+                "$ref": "tchmi:general#/definitions/UDINT"
+            },
+            "ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_ACT": {
+                "allOf": [
+                    {
+                        "allowImplicitAccess": false
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_ACT"
+                    }
+                ]
+            },
+            "ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_COORDMODE": {
+                "allOf": [
+                    {
+                        "allowImplicitAccess": false
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_COORDMODE"
+                    }
+                ]
+            },
+            "ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_SET": {
+                "allOf": [
+                    {
+                        "allowImplicitAccess": false
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_SET"
+                    }
+                ]
+            },
+            "ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_STD": {
+                "allOf": [
+                    {
+                        "allowImplicitAccess": false
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_STD"
+                    }
+                ]
+            },
+            "ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_TRACK": {
+                "allOf": [
+                    {
+                        "allowImplicitAccess": false
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.CDT_MCTOPLC_PLANAR_MOVER_TRACK"
+                    }
+                ]
+            },
+            "ADS-PLC1.REFERENCE-TO-MC.CDT_PLCTOMC_PLANAR_MOVER_STD": {
+                "allOf": [
+                    {
+                        "allowImplicitAccess": false
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.CDT_PLCTOMC_PLANAR_MOVER_STD"
+                    }
+                ]
+            },
             "ADS-PLC1.STRING-255": {
                 "allOf": [
                     {
                         "maxLength": 255
+                    },
+                    {
+                        "$ref": "tchmi:general#/definitions/String"
+                    }
+                ]
+            },
+            "ADS-PLC1.STRING-278": {
+                "allOf": [
+                    {
+                        "maxLength": 278
                     },
                     {
                         "$ref": "tchmi:general#/definitions/String"
@@ -136,6 +1488,290 @@
                             },
                             {
                                 "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.ST_MoverInfo": {
+                "additionalProperties": false,
+                "properties": {
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "ErrorID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "Gap": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "LimitAcc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "LimitDec": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "LimitJerk": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "LimitVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "MoverOtcid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "PlanarMoverCommandMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_MOVER_COMMAND_MODE"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "Positition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "RemainingDistance": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "State": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_PLANAR_STATE"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "TargetTrack": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "TargetTrackPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "Track": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 5
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.ST_MoverOnTrackInfo": {
+                "additionalProperties": false,
+                "properties": {
+                    "DynamicMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_DYNAMIC_MODE_ON_TRACK"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "Gap": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "GapMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_GAP_MODE_ON_TRACK"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "LimitA": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "LimitD": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "LimitJ": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "LimitV": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "Movementtype": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_MOVEMENT_TYPE_ON_TRACK"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "Remainingdistance": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "TargetPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "TargetTrack": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 2
                             }
                         ]
                     }
@@ -235,6 +1871,1245 @@
             },
             "ADS-PLC1.Tc2_System.T_MaxString": {
                 "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-255"
+            },
+            "ADS-PLC1.Tc3_EventLogger.FB_AsyncStrResult": {
+                "additionalProperties": false,
+                "attributes": {
+                    "VTableOffset": "480120",
+                    "VfInitVTableIndex": "8",
+                    "conditionalshow_all_locals": "",
+                    "enable_dynamic_creation": "",
+                    "no_explicit_call": "do not call this POU directly"
+                },
+                "properties": {
+                    "bBusy": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-BOOL"
+                    },
+                    "bError": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-BOOL"
+                    },
+                    "hrErrorCode": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-HRESULT"
+                    },
+                    "nStringSize": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-UDINT"
+                    },
+                    "sResult": {
+                        "allOf": [
+                            {
+                                "attributes": {
+                                    "TcEncoding": "UTF-8"
+                                }
+                            },
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-STRING-255"
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_EventLogger.FB_SourceInfoData": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcImplements": "ITcSourceInfo",
+                    "c++_compatible": "",
+                    "no_explicit_call": "do not call this POU directly"
+                },
+                "properties": {
+                    "_bCutInstancePathByLastInst": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "_stSourceInfo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.ST_SourceInfo"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "aSourceInfoData": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2_OF-TcSerializedSourceInfoType"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "bGuidExists": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "bIdExists": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "bSourceNameIsEqualDefault": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "bSourceNameShouldBeDefault": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "hrInit": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/HRESULT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "m_refCnt": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": ""
+                                },
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "nSourceId": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-UDINT"
+                    },
+                    "sSourceName": {
+                        "allOf": [
+                            {
+                                "attributes": {
+                                    "TcEncoding": "UTF-8"
+                                }
+                            },
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-STRING-255"
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_EventLogger.FB_TcMessage": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcExtends": "Tc3_EventLogger.FB_TcEventBase",
+                    "TcImplements": "Tc3_EventLogger.I_ArgumentsChangeListener;Tc3_EventLogger.I_TcMessage",
+                    "conditionalshow_all_locals": "",
+                    "no_explicit_call": "do not call this POU directly",
+                    "reflection": ""
+                },
+                "properties": {
+                    "FB_TcEventBase_1103__RequestEventClassName_1135__bBusy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": "",
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "FB_TcEventBase_1103__RequestEventClassName_1135__fbResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.FB_AsyncStrResult"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": "",
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "FB_TcEventBase_1103__RequestEventText_1136__bBusy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": "",
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "FB_TcEventBase_1103__RequestEventText_1136__fbResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.FB_AsyncStrResult"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": "",
+                                    "implicit_inst_var": ""
+                                },
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "eSeverity": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-TcEventSeverity"
+                    },
+                    "fbSourceInfo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.FB_TcSourceInfo"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": ""
+                                },
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "ipSourceInfo": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-Tc3_EventLogger.I_TcSourceInfo"
+                    },
+                    "nEventId": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-UDINT"
+                    },
+                    "nTimeSent": {
+                        "allOf": [
+                            {
+                                "attributes": {
+                                    "TcDisplayTypeGUID": "18071995-0000-0000-0000-000000000046"
+                                }
+                            },
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-ULINT"
+                            }
+                        ]
+                    },
+                    "nUniqueId": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-UDINT"
+                    },
+                    "sEventClassName": {
+                        "allOf": [
+                            {
+                                "attributes": {
+                                    "TcEncoding": "UTF-8"
+                                }
+                            },
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-STRING-255"
+                            }
+                        ]
+                    },
+                    "sEventText": {
+                        "allOf": [
+                            {
+                                "attributes": {
+                                    "TcEncoding": "UTF-8"
+                                }
+                            },
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-STRING-255"
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_EventLogger.FB_TcSourceInfo": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcImplements": "Tc3_EventLogger.I_TcSourceInfo",
+                    "no_explicit_call": "do not call this POU directly"
+                },
+                "properties": {
+                    "fbSrcData": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_EventLogger.FB_SourceInfoData"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": ""
+                                },
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "nId": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-UDINT"
+                    },
+                    "sName": {
+                        "allOf": [
+                            {
+                                "attributes": {
+                                    "TcEncoding": "UTF-8"
+                                }
+                            },
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-STRING-255"
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_EventLogger.I_TcSourceInfo": {
+                "additionalProperties": false,
+                "properties": {
+                    "nId": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-UDINT"
+                    },
+                    "sName": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-STRING-255"
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_EventLogger.ST_SourceInfo": {
+                "additionalProperties": false,
+                "properties": {
+                    "guid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.GUID"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "nId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "eg.the PLC instance object ID as owner of the event object",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "sName": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-278"
+                            },
+                            {
+                                "attributes": {
+                                    "TcEncoding": "UTF-8"
+                                },
+                                "comment": "eg.the symbol name of the function block which created the event",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.CDT_MCTOPLC_PLANAR_MOVER": {
+                "additionalProperties": false,
+                "properties": {
+                    "ACT": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_ACT"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC",
+                                    "TcPointerMapping": ""
+                                },
+                                "comment": "Mover actpoint data that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "COORDMODE": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_COORDMODE"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC",
+                                    "TcPointerMapping": ""
+                                },
+                                "comment": "Mover coordinate mode information that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "SET": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_SET"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC",
+                                    "TcPointerMapping": ""
+                                },
+                                "comment": "Mover setpoint data that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "SETONTRACK": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_TRACK"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC",
+                                    "TcPointerMapping": ""
+                                },
+                                "comment": "Mover busy information that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "STD": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.REFERENCE-TO-MC.CDT_MCTOPLC_PLANAR_MOVER_STD"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC",
+                                    "TcPointerMapping": ""
+                                },
+                                "comment": "Mover standard data that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.CDT_PLCTOMC_PLANAR_MOVER": {
+                "additionalProperties": false,
+                "properties": {
+                    "STD": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.REFERENCE-TO-MC.CDT_PLCTOMC_PLANAR_MOVER_STD"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC",
+                                    "TcPointerMapping": ""
+                                },
+                                "comment": "Mover standard data that is transferred from this function block to the Planar Mover.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.EPlanarObjectType": {
+                "attributes": {
+                    "qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    301,
+                    302,
+                    303,
+                    304
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "None",
+                        "value": 301
+                    },
+                    {
+                        "label": "Mover",
+                        "value": 302
+                    },
+                    {
+                        "label": "Track",
+                        "value": 303
+                    },
+                    {
+                        "label": "Environment",
+                        "value": 304
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.MC_DIRECTION": {
+                "attributes": {
+                    "qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "options": [
+                    {
+                        "label": "mcDirectionNonModulo",
+                        "value": 0
+                    },
+                    {
+                        "label": "mcDirectionPositive",
+                        "value": 1
+                    },
+                    {
+                        "label": "mcDirectionShortestWay",
+                        "value": 2
+                    },
+                    {
+                        "label": "mcDirectionNegative",
+                        "value": 3
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarFeedback": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcExtends": "Tc3_Mc3PlanarMotion.MC_PlanarFeedbackBase",
+                    "c++_compatible": "",
+                    "external_name": "MC_PlanarFeedback_GUID_18DC4C10_07B2_2AA4_9316_94568E9A66D9",
+                    "no_assign_warning": ""
+                },
+                "properties": {
+                    "Aborted": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates the command is aborted, i.e. execution of the command finished due the start of other commands.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "Active": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates an active command, i.e. command was accepted and is being executed.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "Busy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates a busy command, i.e. command is being processed, waiting for execution, or already executing (= also active).",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "Done": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates the command is done, i.e. execution of the command finished successfully.",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates the command has an error.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "ErrorId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Indicates the error id of the command error.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "objectInfo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.PlanarObjectInfo"
+                            },
+                            {
+                                "comment": "Indicates which object one would collide with.",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarFeedbackGearInPosOnTrackWithMasterMover": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcExtends": "Tc3_Mc3PlanarMotion.MC_PlanarFeedbackInSync",
+                    "c++_compatible": "",
+                    "external_name": "MC_PlanarFeedbackGearInPosOnTrackWithMasterMover_GUID_3460BF75_B9B5_2A81_967C_748E692E8320",
+                    "no_assign_warning": ""
+                },
+                "properties": {
+                    "Aborted": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates the command is aborted, i.e. execution of the command finished due the start of other commands.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "Active": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates an active command, i.e. command was accepted and is being executed.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "Busy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates a busy command, i.e. command is being processed, waiting for execution, or already executing (= also active).",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates the command has an error.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "ErrorId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Indicates the error id of the command error.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "inSync": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Indicates whether the mover is currently in sync with the master (within tolerance specified in the command options).",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "objectInfo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.PlanarObjectInfo"
+                            },
+                            {
+                                "comment": "Indicates which object one would collide with.",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarMover": {
+                "additionalProperties": false,
+                "attributes": {
+                    "c++_compatible": "",
+                    "external_name": "MC_PlanarMover_GUID_CA65F5B9_63F4_2967_A4CE_1AF5BC299EA2",
+                    "no_assign_warning": "",
+                    "no_explicit_call": "do not call this POU directly"
+                },
+                "properties": {
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Flag indicating a Planar Mover error.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "ErrorId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Error id indicating the Planar Mover error type.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "MCTOPLC": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.CDT_MCTOPLC_PLANAR_MOVER"
+                            },
+                            {
+                                "comment": "Mover data that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "MoverHardwareOid": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-OTCID"
+                    },
+                    "PLCTOMC": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.CDT_PLCTOMC_PLANAR_MOVER"
+                            },
+                            {
+                                "comment": "Mover data that is transferred from the Planar Mover to this function block.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.MC_PlanarTrackTrail": {
+                "additionalProperties": false,
+                "attributes": {
+                    "c++_compatible": "",
+                    "external_name": "MC_PlanarTrackTrail_GUID_6F4437B4_9B3B_2924_934D_F81FE7DDE099",
+                    "no_assign_warning": "",
+                    "no_explicit_call": "do not call this POU directly"
+                },
+                "properties": {
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Flag indicating a TrackTrail error.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "ErrorId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Error id indicating the TrackTrail error type.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "TrackCount": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-UDINT"
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.MC_SYNC_DIRECTIONS": {
+                "attributes": {
+                    "qualified_only": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                ],
+                "options": [
+                    {
+                        "label": "Invalid",
+                        "value": 0
+                    },
+                    {
+                        "label": "Positive",
+                        "value": 1
+                    },
+                    {
+                        "label": "Negative",
+                        "value": 2
+                    },
+                    {
+                        "label": "Both",
+                        "value": 3
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.PlanarObjectInfo": {
+                "additionalProperties": false,
+                "properties": {
+                    "Id": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Object id.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "ObjectType": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.EPlanarObjectType"
+                            },
+                            {
+                                "comment": "Object type.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.ST_GearInPosOnTrackWithMasterMoverOptions": {
+                "additionalProperties": false,
+                "properties": {
+                    "allowedSlaveSyncDirections": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_SYNC_DIRECTIONS"
+                            },
+                            {
+                                "comment": "Directions in which the slave is allowed to move while in synchronizing phase.",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "directionMasterSyncPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_DIRECTION"
+                            },
+                            {
+                                "comment": "Direction in which the master sync position is approached. This parameter is interpreted only in case the master mover is on a closed-loop track. Otherwise, it must be set to its default value.“",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "directionSlaveSyncPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_DIRECTION"
+                            },
+                            {
+                                "comment": "Direction in which the slave sync position is approached. This parameter is interpreted only in case the slave mover is on a closed-loop track. Otherwise, it must be set to its default value.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "followMover": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "If true, the slave PlanarMover will proceed to follow the master PlanarMover after the latter has traversed the masterSyncPosition. In this case the PlanarTrackTrail describes the slave's path towards the masterSyncPosition. If false, the slave moves exclusively on the PlanarTrackTrail specified.",
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "gap": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Minimal distance [mm] to next Planar Mover on track.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "inSyncToleranceDistance": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Tolerance in absolute value [mm] of position difference to master axis for inSync flag.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "moduloToleranceMasterSyncPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Tolerance \"window\" [mm] for master sync position. This parameter is interpreted only in case the master mover is on a closed-loop track. Otherwise, it must be set to its default value.“",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "moduloToleranceSlaveSyncPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Tolerance \"window\" [mm] for slave sync position. This parameter is interpreted only in case the slave mover is on a closed-loop track. Otherwise, it must be set to its default value.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Mc3PlanarMotion.ST_MoveOnTrackOptions": {
+                "additionalProperties": false,
+                "properties": {
+                    "additionalTurns": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Addition turns to move in modulo movement (positive or negative).",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "direction": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc3_Mc3PlanarMotion.MC_DIRECTION"
+                            },
+                            {
+                                "comment": "Direction in which the target is approached.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "dynamicMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_DYNAMIC_MODE_ON_TRACK"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC"
+                                },
+                                "comment": "The way in which dynamics are planned on track.",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "gap": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Minimal distance [mm] to next Planar Mover on track.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "gapMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.MC_GAP_MODE_ON_TRACK"
+                            },
+                            {
+                                "attributes": {
+                                    "Namespace": "MC"
+                                },
+                                "comment": "The way in which gap control is done with all neighbours on track.",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "moduloTolerance": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "Tolerance \"window\" [mm] in modulo movement.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_Physics.DynamicConstraint_PathXY": {
+                "additionalProperties": false,
+                "attributes": {
+                    "c++_compatible": "",
+                    "external_name": "DynamicConstraint_PathXY_GUID_AB3E3C77_9BDB_9159_EE1B_7D136D414F5E",
+                    "no_assign_warning": "",
+                    "no_explicit_call": "do not call this POU directly"
+                },
+                "properties": {
+                    "A": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-MC.MC_LREAL"
+                    },
+                    "D": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-MC.MC_LREAL"
+                    },
+                    "J": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-MC.MC_LREAL"
+                    },
+                    "V": {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.PROPERTY-GET-SET-MC.MC_LREAL"
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_XtsInterface.I_XtsProcessingUnit1": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcExtends": "Tc3_XtsInterface.I_XtsBase"
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_XtsInterface.I_XtsXlMover1": {
+                "additionalProperties": false,
+                "attributes": {
+                    "TcExtends": "Tc3_XtsInterface.I_XtsBase"
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.Tc3_XtsInterface.XtsCommandFeedback": {
+                "additionalProperties": false,
+                "properties": {
+                    "HRESULT": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/HRESULT"
+                            },
+                            {
+                                "comment": "Returns the HRESULT to the call.",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "HasError": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Returns wether the execution of the method is busy.",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "IsBusy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Returns wether the execution of the method is busy.",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "IsDone": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Returns wether the execution of the method is done.",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.TcEventSeverity": {
+                "attributes": {
+                    "plcAttribute_qualified_only": "",
+                    "plcAttribute_strict": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "options": [
+                    {
+                        "label": "TCEVENTSEVERITY_Verbose",
+                        "value": 0
+                    },
+                    {
+                        "label": "TCEVENTSEVERITY_Info",
+                        "value": 1
+                    },
+                    {
+                        "label": "TCEVENTSEVERITY_Warning",
+                        "value": 2
+                    },
+                    {
+                        "label": "TCEVENTSEVERITY_Error",
+                        "value": 3
+                    },
+                    {
+                        "label": "TCEVENTSEVERITY_Critical",
+                        "value": 4
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.TcSerializedSourceInfoType": {
+                "additionalProperties": false,
+                "properties": {
+                    "cbData": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "eType": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.TcSourceInfoType"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "obData": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "ADS-PLC1.TcSourceInfoType": {
+                "attributes": {
+                    "plcAttribute_qualified_only": "",
+                    "plcAttribute_strict": ""
+                },
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    4
+                ],
+                "options": [
+                    {
+                        "label": "Undefined",
+                        "value": 0
+                    },
+                    {
+                        "label": "Id",
+                        "value": 1
+                    },
+                    {
+                        "label": "Guid",
+                        "value": 2
+                    },
+                    {
+                        "label": "Name",
+                        "value": 4
+                    }
+                ],
+                "type": "integer"
             }
         },
         "TcHmiSrv": {
@@ -294,7 +3169,7 @@
                 ]
             },
             "NAME": "TcHmiEcDiagnostics",
-            "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EcDiagnostics.22.0.6418\\runtimes\\win-x64\\native\\",
+            "PATH": "..\\..\\TcHmiProject1\\Packages\\Beckhoff.TwinCAT.HMI.EcDiagnostics.22.0.6418\\runtimes\\win-x64\\native\\",
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },
@@ -945,6 +3820,33 @@
             "OPTIONS": {},
             "SCHEMA": {
                 "function": true
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Mc.fbMover": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Mc::fbMover",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_1..16_OF-FB_Mover"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Mc.fbMover.1._stMoverInfos": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Mc::fbMover[1]::_stMoverInfos",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_MoverInfo"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
             },
             "USEMAPPING": true
         },
@@ -5501,6 +8403,8 @@
                 "ADS.AdsSyncReadStateReq": 3,
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
+                "ADS.PLC1.GVL_Mc.fbMover": 3,
+                "ADS.PLC1.GVL_Mc.fbMover.1._stMoverInfos": 3,
                 "ADS.PLC1.GVL_Mc.sGraphCalciFrame": 3,
                 "ADS.PLC1.MAIN.HMI_StopCmd": 3,
                 "ADS.PLC1.MAIN.MagnetOnManHMICmd": 3,
@@ -5642,11 +8546,11 @@
     "USERSELECTTYPE": 0,
     "VIDEOSEGMENTSIZE": 1048576,
     "VIRTUALDIRECTORIES": {
-        "/": "..\\..\\..\\Documents\\AmznTwincatRacetrack\\AmznTwincatRacetrackHMI\\TcHmiProject1\\TcHmiProject1\\",
-        "/Beckhoff.TwinCAT.HMI.Controls": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Controls.14.2.110\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.EcDiagnosticsControl": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.EcDiagnosticsControl.14.2.90\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Framework": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Framework.14.2.110\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Functions": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Functions.14.2.90\\runtimes\\native1.12-tchmi",
-        "/bin": "..\\..\\..\\Documents\\AmznTwincatRacetrack\\AmznTwincatRacetrackHMI\\TcHmiProject1\\TcHmiProject1\\bin\\"
+        "/": "..\\..\\TcHmiProject1\\",
+        "/Beckhoff.TwinCAT.HMI.Controls": "..\\..\\TcHmiProject1\\Packages\\Beckhoff.TwinCAT.HMI.Controls.14.2.110\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.EcDiagnosticsControl": "..\\..\\TcHmiProject1\\Packages\\Beckhoff.TwinCAT.HMI.EcDiagnosticsControl.14.2.90\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.Framework": "..\\..\\TcHmiProject1\\Packages\\Beckhoff.TwinCAT.HMI.Framework.14.2.110\\runtimes\\native1.12-tchmi",
+        "/Beckhoff.TwinCAT.HMI.Functions": "..\\..\\TcHmiProject1\\Packages\\Beckhoff.TwinCAT.HMI.Functions.14.2.90\\runtimes\\native1.12-tchmi",
+        "/bin": "..\\..\\TcHmiProject1\\bin\\"
     }
 }

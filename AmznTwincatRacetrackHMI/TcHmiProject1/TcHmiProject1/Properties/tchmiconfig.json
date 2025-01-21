@@ -1,5 +1,5 @@
 {
-  "$schema": "",
+  "$schema": "./../Packages/Beckhoff.TwinCAT.HMI.Framework.14.2.110/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
   "basePath": "./Beckhoff.TwinCAT.HMI.Framework",
   "scaleMode": "None",
   "startupView": "Desktop.view",
@@ -83,7 +83,14 @@
   ],
   "userFunctions": [],
   "symbols": {
-    "internal": {},
+    "internal": {
+      "test": {
+        "value": "0",
+        "type": "tchmi:general#/definitions/Number",
+        "persist": false,
+        "readonly": false
+      }
+    },
     "themedResources": {}
   },
   "trigger": [],
@@ -109,10 +116,6 @@
       "basePath": "/Beckhoff.TwinCAT.HMI.Controls"
     },
     {
-      "name": "Beckhoff.TwinCAT.HMI.EcDiagnostics",
-      "basePath": "/Beckhoff.TwinCAT.HMI.EcDiagnostics"
-    },
-    {
       "name": "Beckhoff.TwinCAT.HMI.EcDiagnosticsControl",
       "basePath": "/Beckhoff.TwinCAT.HMI.EcDiagnosticsControl"
     },
@@ -123,10 +126,6 @@
     {
       "name": "Beckhoff.TwinCAT.HMI.Functions",
       "basePath": "/Beckhoff.TwinCAT.HMI.Functions"
-    },
-    {
-      "name": "Beckhoff.TwinCAT.HMI.Server.Engineering",
-      "basePath": "/Beckhoff.TwinCAT.HMI.Server.Engineering"
     }
   ],
   "keyboardLayouts": [
